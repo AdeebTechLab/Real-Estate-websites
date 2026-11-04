@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./media/dash-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/dash.css">
+    <title>Crown properties</title>
+</head>
+
+<body>
+    <div id="loader" class="loader-container">
+        Wait...
+        <div class="dot">.</div>
+    </div>
+    <div class="mini-nav" id="home">
+        <div class="mini-nav-first mini-nav-boxes">
+            <div class="mini-nav-call"><i class="fa-solid fa-phone min-nav-icons"
+                    style="color: #D1A748;"></i><span>+1(800)555-REAL</span></div>
+            <div class="mini-nav-email"><i class="fa-solid fa-envelope min-nav-icons"
+                    style="color: #D1A748;"></i><span>support@crownproperties.com</span></div>
+            <div class="mini-nav-address"><i class="fa-solid fa-location-dot min-nav-icons"
+                    style="color: #D1A748;"></i><span>742 Bahria Town, Karachi</span></div>
+        </div>
+        <div class="mini-nav-sec mini-nav-boxes">
+            <div class="contact-icon mini-nav-sec-boxes"><a
+                    href="https://www.tiktok.com/@aliboos023?_r=1&_d=f060bkdi4dbge2&sec_uid=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&share_author_id=7239563470453834758&sharer_language=en&source=h5_m&u_code=e882hidmdieife&timestamp=d1773303637&user_id=7239563470453834758&sec_user_id=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7608113154351433480&share_link_id=ea27a0fa-e79d-403a-a23a-598b1b3a0fc4&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1"
+                    target="_blank"><i class="fa-brands fa-tiktok mini-nav-sec-icons"></i></a></div>
+            <div class="contact-icon mini-nav-sec-boxes"><a
+                    href="https://m.facebook.com/story.php?story_fbid=pfbid08R9SX7AiatunzZ5qM8QgcgvRvkYKtMT5WpAkWgDFUNhDBzmc5bRpkUYHqmFAhSxbl&id=61566122708645&mibextid=Nif5oz"
+                    target="_blank"><i class="fa-brands fa-facebook-f mini-nav-sec-icons"></i></a></div>
+            <div class="contact-icon mini-nav-sec-boxes"><a
+                    href="https://www.instagram.com/m.bilawal850?utm_source=qr&igsh=MWs3MjUzdmFvYjQwZQ=="
+                    target="_blank"><i class="fa-brands fa-instagram mini-nav-sec-icons"></i></a></div>
+            <div class="contact-icon mini-nav-sec-boxes"><a
+                    href="https://www.linkedin.com/in/m-bilawal-ali-76a8b435a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank"><i class="fa-brands fa-linkedin-in mini-nav-sec-icons"></i></a></div>
+        </div>
+        <div class="bar">
+            <div class="bar-icon"><i class="fa-solid fa-angle-down arrow-icon" style="color: rgb(255, 255, 255);"></i>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid my-container">
+            <div class="logo-brand">
+                <div class="nav-img-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="120 40 270 220" width="100%" height="100%"
+                        fill="#D1A748">
+                        <!-- Star -->
+                        <polygon points="250,55 259,78 284,78 264,92 272,116 250,101 228,116 236,92 216,78 241,78" />
+
+                        <!-- Crown & House Outline Shape -->
+                        <path
+                            d="M135,115 L250,145 L365,115 L355,215 L145,215 Z M250,132 L163,180 L205,180 L250,145 L295,180 L337,180 Z" />
+
+                        <!-- Central House Details & Chimney -->
+                        <rect x="272" y="152" width="10" height="42" />
+                        <path d="M225,180 L275,180 L275,225 L225,225 Z" />
+
+                        <!-- Windows -->
+                        <rect x="235" y="190" width="13" height="13" fill="#ffffff" />
+                        <rect x="253" y="190" width="13" height="13" fill="#ffffff" />
+                        <rect x="235" y="208" width="13" height="13" fill="#ffffff" />
+                        <rect x="253" y="208" width="13" height="13" fill="#ffffff" />
+
+                        <!-- Bottom Base Bar -->
+                        <rect x="160" y="235" width="180" height="12" rx="3" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="upper-box">
+                        <strong class="crown">CROWN</strong><span>PROPERTIES</span>
+                    </div>
+                    <div class="lower-box">
+                        - REAL ESTATE PLATEFORM
+                    </div>
+                </div>
+            </div>
+            <button class="navbar-toggler nav-toggle" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse menu" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link selected-li" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#properties">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse auth-box" id="navbarNavDropdown">
+                <a href="./login.html"><button type="button" class="btn btn-outline-primary sign-in"><i
+                            class="fa-solid fa-arrow-right-to-bracket"></i>
+                        Login</button></a>
+                <a href="./register.html"><button type="button" class="btn btn-primary sign-up"><i
+                            class="fa-solid fa-person-circle-plus"></i>
+                        Register</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="hero">
+            <div class="shine-box">
+                <span>✨ Exceptional Homes & Investments</span>
+            </div>
+            <div class="hero-state">
+                <h1 id="hero-state">Find The Perfect Place To</h1>
+                <h1 id="hero-state2">Call Your Home</h1>
+            </div>
+            <div class="hero-sub-state">
+                <p id="hero-sub-state">Explore thousands of luxury villas, modern apartments, and prime commercial real
+                    estate with trusted, certified realtors.</p>
+            </div>
+            <div class="hero-form">
+                <form>
+
+                    <div class="form-boxes">
+                        <label class="form-label hero-labels"><i class="fa-solid fa-location-dot"
+                                style="color: rgb(209, 167, 72);"></i> Location</label>
+                        <input type="text" class="form-control  hero-select" placeholder="e.g. Paragon Towers">
+                    </div>
+                    <div class="form-boxes">
+                        <label class="form-label hero-labels"><i class="fa-solid fa-house"
+                                style="color: rgb(209, 167, 72);"></i> Type</label>
+                        <select class="form-select hero-select" aria-label="Default select example">
+                            <option selected-option>All Types</option>
+                            <option value="1">House</option>
+                            <option value="2">Apartment</option>
+                            <option value="3">Commercial</option>
+                            <option value="4">Plot</option>
+                        </select>
+                    </div>
+                    <div class="form-boxes">
+                        <label class="form-label hero-labels"><i class="fa-solid fa-tag text-brand-600 mr-1"
+                                style="color: rgb(209, 167, 72);"></i>
+                            Purpose</label>
+                        <select class="form-select hero-select" aria-label="Default select example">
+                            <option selected>Buy or Rent</option>
+                            <option value="1">For Buy</option>
+                            <option value="2">For Rent</option>
+                        </select>
+                    </div>
+                    <div class="form-boxes hero-btn-box">
+                        <button type="submit" class="btn btn-primary search submit-select"><i
+                                class="fa-solid fa-magnifying-glass"></i> Search Properties</button>
+                    </div>
+                </form>
+            </div>
+            <div class="welcome-box" id="properties">
+                <span class="welcome-msg">🎊 Welcome in New Heaven!</span>
+            </div>
+        </div>
+        <div class="property-type-box">
+            <div>
+                <h2 class="exp-heading">Explore By Property Type</h2>
+                <p class="exp-para">Find living spaces tailored to your lifestyle and architectural taste.</p>
+            </div>
+            <div class="cards-container">
+                <div class="card" data-aos="fade-up">
+                    <div class="icon-box"><i class="fa-solid fa-house"></i></div>
+                    <h3>Houses & Villas</h3>
+                    <p>120+ Listings</p>
+                </div>
+                <div class="card" data-aos="fade-up">
+                    <div class="icon-box"><i class="fa-solid fa-building"></i></div>
+                    <h3>Apartments</h3>
+                    <p>210+ Listings</p>
+                </div>
+                <div class="card" data-aos="fade-up">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Commercial</h3>
+                    <p>45+ Listings</p>
+                </div>
+                <div class="card" data-aos="fade-up">
+                    <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Plots & Land</h3>
+                    <p>60+ Listings</p>
+                </div>
+            </div>
+        </div>
+        <div class="card2-container">
+            <div class="card2-box">
+                <div class="selections">Top Selections</div>
+                <div class="featured-box">
+                    <div class="featured">Featured Listings</div>
+
+                    <div class="view-properties">
+                        <a href="#" class="all-properties"><pre>View All Properties  <i class="fa-solid fa-angle-right"
+                            style="color: rgb(209, 167, 72);"></i></pre></a>
+                    </div>
+                </div>
+            </div>
+            <div class="parent-box-card">
+                <div class="card2" data-aos="fade-up">
+                    <div class="img-box1 img-box">
+                        <div class="choice-inbox">
+                            <div class="inbox2">
+                                <button type="button" class="btn sale-btn">For
+                                    Sale</button>
+                            </div>
+                            <div class="inbox2">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-b-box">
+                        <h2 style="color: #0f172a; font-weight: bolder;">$550,000</h2>
+                        <a href="#" class="glass-para">The Glass House Minimalist Villa</a>
+                        <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Malibu Beach, CA
+                        </p>
+                        <div class="specs">
+                            <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4 Beds</div>
+                            <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                            <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 2,000
+                                sqft
+                            </div>
+                        </div>
+                        <button type="button" class="btn view-btn"><i class="fa-solid fa-eye"></i> View
+                            Details</button>
+                    </div>
+                </div>
+                <div class="card2" data-aos="fade-up">
+                    <div class="img-box2 img-box">
+                        <div class="choice-inbox">
+                            <div class="inbox2">
+                                <button type="button" class="btn sale-btn">For
+                                    Sale</button>
+                            </div>
+                            <div class="inbox2">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-b-box">
+                        <h2 style="color: #0f172a; font-weight: bolder;">$150,000</h2>
+                        <a href="#" class="glass-para">Skyline Tower Penthouse</a>
+                        <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, New York</p>
+                        <div class="specs">
+                            <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 5 Beds</div>
+                            <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 2 Baths</div>
+                            <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 2,500
+                                sqft
+                            </div>
+                        </div>
+                        <button type="button" class="btn view-btn"><i class="fa-solid fa-eye"></i> View
+                            Details</button>
+                    </div>
+                </div>
+                <div class="card2" data-aos="fade-up">
+                    <div class="img-box3 img-box">
+                        <div class="choice-inbox">
+                            <div class="inbox2">
+                                <button type="button" class="btn sale-btn">For
+                                    Sale</button>
+                            </div>
+                            <div class="inbox2">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-b-box">
+                        <h2 style="color: #0f172a; font-weight: bolder;">$350,000</h2>
+                        <a href="#" class="glass-para">Urban Loft in Arts District</a>
+                        <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, Austin, TX</p>
+                        <div class="specs">
+                            <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 6 Beds</div>
+                            <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                            <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 3,500
+                                sqft
+                            </div>
+                        </div>
+                        <button type="button" class="btn view-btn"><i class="fa-solid fa-eye"></i> View
+                            Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="about"></div>
+        <div class="container3">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div class="cont3-box1" data-aos="fade-up"></div>
+            </div>
+            <div class="cont3-box2" data-aos="fade-up">
+                <p style="font-weight: bold;font-size: 16px;color: #D1A748;">Why Choose CrownProperties</p>
+                <h1>We Provide Premium Real Estate Experiences Across The Globe</h1>
+                <p style="color: #b7b7b7;">CrownProperties is built on a foundation of integrity, transparent pricing,
+                    and
+                    unparalleled local market knowledge. Whether buying your first apartment or building an investment
+                    portfolio, our team guides you every step of the way.</p>
+                <div class="two-blocks">
+                    <div class="block1 both-blocks">
+                        <div class="headset-icon"><i class="fa-solid fa-shield-halved text-sm"></i></div>
+                        <div>
+                            <p>Verified Listings</p>
+                            <p>100% legal title verification</p>
+                        </div>
+                    </div>
+                    <div class="block2 both-blocks">
+                        <div class="headset-icon"><i class="fa-solid fa-headset text-sm"></i></div>
+                        <div>
+                            <p>24/7 Agent Support</p>
+                            <p>Dedicated specialist assistance</p>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="about" class="btn about-btn">About Us</button>
+            </div>
+        </div>
+        <div class="say-box">
+            <div class="say-box1">
+                <p>Client Reviews</p>
+                <h1>What Our Clients Say</h1>
+            </div>
+            <div class="say-box2">
+                <div class="say-card" data-aos="fade-up">
+                    <div class="stars-box">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="color:#cbd5e1; font-style: italic;">"CrownProperties made buying our first home a breeze.
+                        Their
+                        team was knowledgeable, patient, and
+                        always available to answer our questions. We couldn't be happier with our new home!"</p>
+                    <div class="say-card-author"><img src="./media/client2.avif" alt="Author Image" class="author-img">-
+                        David & Marcus Vane <span
+                            style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">HomeOwner
+                            in California</span></div>
+                </div>
+
+                <div class="say-card" data-aos="fade-up">
+                    <div class="stars-box">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="color:#cbd5e1; font-style: italic;">"As an investor, I needed a reliable partner to help
+                        me navigate the real estate market.
+                        CrownProperties
+                        provided expert advice and helped me secure profitable properties. Highly recommend!"</p>
+                    <div class="say-card-author"><img src="./media/client1.avif" alt="Author Image" class="author-img">-
+                        Michael Smith <span
+                            style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">CEO, Nexa
+                            Tech Studios</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="para-connect-box" data-aos="fade-up">
+            <div class="connect-box">
+                <div class="find">
+                    <h1>Ready to Find Your Next Dream Property?</h1>
+                    <p>Connect with our agents today for personalized guidance or list your property with us.</p>
+                </div>
+                <div class="agent-box">
+                    <button type="submit" class="btn browse-btn">Browse Listings</button>
+                    <button type="submit" class="btn contact-btn">Contact Agent</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="feedback" id="contact">
+
+        <div class="feedback-box2">
+            <div class="feedback-card" data-aos="fade-right">
+                <div class="meet"><span style="color: #D1A748;">Get in </span><span>Touch</span></div>
+                <div class="whatsapp"><a href="https://wa.me/923034909098" target="_blank"><i
+                            class="fa-brands fa-whatsapp mini-nav-sec-icons"></i></a></div>
+                <div class="accounts-icons">
+                    <div class="footer-icons"><a
+                            href="https://www.tiktok.com/@aliboos023?_r=1&_d=f060bkdi4dbge2&sec_uid=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&share_author_id=7239563470453834758&sharer_language=en&source=h5_m&u_code=e882hidmdieife&timestamp=d1773303637&user_id=7239563470453834758&sec_user_id=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7608113154351433480&share_link_id=ea27a0fa-e79d-403a-a23a-598b1b3a0fc4&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1"
+                            target="_blank"><i class="fa-brands fa-tiktok mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://m.facebook.com/story.php?story_fbid=pfbid08R9SX7AiatunzZ5qM8QgcgvRvkYKtMT5WpAkWgDFUNhDBzmc5bRpkUYHqmFAhSxbl&id=61566122708645&mibextid=Nif5oz"
+                            target="_blank"><i class="fa-brands fa-facebook-f mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://www.instagram.com/m.bilawal850?utm_source=qr&igsh=MWs3MjUzdmFvYjQwZQ=="
+                            target="_blank"><i class="fa-brands fa-instagram mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://www.linkedin.com/in/m-bilawal-ali-76a8b435a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                            target="_blank"><i class="fa-brands fa-linkedin-in mini-nav-sec-icons"></i></a></div>
+                </div>
+            </div>
+            <div class="feedback-card" data-aos="fade-left">
+                <form style="width: 100%;">
+                    <h2 style="color: #D1A748;">Register</h2>
+                    <hr>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            autocomplete="given-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                            placeholder="abc@examle.com" aria-describedby="emailHelp" autocomplete="email">
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here"
+                            id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">Comments</label>
+                    </div>
+                    <div class="mt-2">
+                    </div>
+                    <div class="btns-box">
+                        <button type="submit" class="btn-solid theme-primary submit-btn btns"><i
+                                class="fa-regular fa-paper-plane"></i> Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer data-aos="fade-up">
+        <div class="footer-box1">
+            <div class="footer-accounts">
+                <div class="logo-brand"
+                    style="display: flex; justify-content: space-between;align-items: center; margin-bottom: 1rem;">
+                    <div class="nav-img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="120 40 270 220" width="100%" height="100%"
+                            fill="#D1A748">
+                            <!-- Star -->
+                            <polygon
+                                points="250,55 259,78 284,78 264,92 272,116 250,101 228,116 236,92 216,78 241,78" />
+
+                            <!-- Crown & House Outline Shape -->
+                            <path
+                                d="M135,115 L250,145 L365,115 L355,215 L145,215 Z M250,132 L163,180 L205,180 L250,145 L295,180 L337,180 Z" />
+
+                            <!-- Central House Details & Chimney -->
+                            <rect x="272" y="152" width="10" height="42" />
+                            <path d="M225,180 L275,180 L275,225 L225,225 Z" />
+
+                            <!-- Windows -->
+                            <rect x="235" y="190" width="13" height="13" fill="#ffffff" />
+                            <rect x="253" y="190" width="13" height="13" fill="#ffffff" />
+                            <rect x="235" y="208" width="13" height="13" fill="#ffffff" />
+                            <rect x="253" y="208" width="13" height="13" fill="#ffffff" />
+
+                            <!-- Bottom Base Bar -->
+                            <rect x="160" y="235" width="180" height="12" rx="3" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="upper-box">
+                            <strong class="crown">CROWN</strong><span>PROPERTIES</span>
+                        </div>
+                        <div class="lower-box">
+                            - REAL ESTATE PLATEFORM
+                        </div>
+                    </div>
+                </div>
+                <p>CrownProperties is a premier real estate platform connecting buyers, sellers, and renters with
+                    premium
+                    properties across top metropolitan destinations worldwide.</p>
+                <div class="accounts-icons">
+                    <div class="footer-icons"><a
+                            href="https://www.tiktok.com/@aliboos023?_r=1&_d=f060bkdi4dbge2&sec_uid=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&share_author_id=7239563470453834758&sharer_language=en&source=h5_m&u_code=e882hidmdieife&timestamp=d1773303637&user_id=7239563470453834758&sec_user_id=MS4wLjABAAAAuA6k9t2lgTv1w0qm227ONADnLweNceObv3WT9EwoSwblSNPuNJb1xFqHkVtzptiq&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7608113154351433480&share_link_id=ea27a0fa-e79d-403a-a23a-598b1b3a0fc4&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1"
+                            target="_blank"><i class="fa-brands fa-tiktok mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://m.facebook.com/story.php?story_fbid=pfbid08R9SX7AiatunzZ5qM8QgcgvRvkYKtMT5WpAkWgDFUNhDBzmc5bRpkUYHqmFAhSxbl&id=61566122708645&mibextid=Nif5oz"
+                            target="_blank"><i class="fa-brands fa-facebook-f mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://www.instagram.com/m.bilawal850?utm_source=qr&igsh=MWs3MjUzdmFvYjQwZQ=="
+                            target="_blank"><i class="fa-brands fa-instagram mini-nav-sec-icons"></i></a></div>
+                    <div class="footer-icons"><a
+                            href="https://www.linkedin.com/in/m-bilawal-ali-76a8b435a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                            target="_blank"><i class="fa-brands fa-linkedin-in mini-nav-sec-icons"></i></a></div>
+                </div>
+            </div>
+            <div class="quick">
+                <ul>
+                    <p>Quick Links</p>
+                    <a>Home</a><br>
+                    <a>Browse Properties</a><br>
+                    <a>About Our Agency</a><br>
+                    <a>Contact Us</a><br>
+                    <a>Saved Listings</a><br>
+                </ul>
+            </div>
+            <div class="footer-types">
+                <ul>
+                    <p>Property Type</p>
+                    <a>Luxury Houses</a><br>
+                    <a>Modern Apartments</a><br>
+                    <a>Commercial Spaces</a><br>
+                    <a>Residential Plots</a><br>
+                </ul>
+            </div>
+        </div>
+        <div style="padding: 0 1rem;">
+            <div class="newsletters" data-aos="fade-in">
+                <p>Subscribe for exclusive off-market listings and market trends.</p>
+                <div class="mb-3">
+                    <input type="email" class="form-control news-input" placeholder="Enter Email"
+                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn subscribe">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-box2">
+            <div class="footer-box2-sub1">© 2026 CrownProperties Real Estate Inc. All rights reserved.</div>
+            <div class="footer-box2-sub2">
+                <p>Privacy Policy</p>
+                <p>Terms of Service</p>
+                <p>Sitemap</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script src="./js/dash.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
