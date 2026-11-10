@@ -1,0 +1,773 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}
+Crown properties
+{% endblock %}
+{% block start %}
+<section>
+    <div class="hero">
+        <div class="shine-box">
+            <span>✨ Exceptional Homes & Investments</span>
+        </div>
+        <div class="hero-state">
+            <h1 id="hero-state">Find The Perfect Place To</h1>
+            <h1 id="hero-state2">Call Your Home</h1>
+        </div>
+        <div class="hero-sub-state">
+            <p id="hero-sub-state">Explore thousands of luxury villas, modern apartments and prime commercial real
+                estate with trusted, certified realtors.</p>
+        </div>
+        <div class="hero-form">
+            <form method="POST" action="{% url 'send_location' %}" enctype="multipart/form-data" target="_blank">
+                {% csrf_token %}
+                {% if messages %}
+                <div id="custom-alert-box"
+                    style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #fff; border-left: 5px solid #d9a74a; padding: 15px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 4px; font-family: sans-serif;">
+                    {% for message in messages %}
+                    <p style="margin: 0; color: #333; font-weight: 500;">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="form-boxes">
+                    <label class="form-label hero-labels"><i class="fa-solid fa-location-dot"
+                            style="color: rgb(209, 167, 72);"></i> Location</label>
+                    <input type="text" name="location" class="form-control  hero-select"
+                        placeholder="e.g. Orchard Enclave" required>
+                </div>
+                <div class="form-boxes">
+                    <label class="form-label hero-labels"><i class="fa-solid fa-house"
+                            style="color: rgb(209, 167, 72);"></i> Type</label>
+                    <select class="form-select hero-select" name="type" aria-label="Default select example" required>
+                        <option selected-option>All Types</option>
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Plot">Plot</option>
+                    </select>
+                </div>
+                <div class="form-boxes">
+                    <label class="form-label hero-labels"><i class="fa-solid fa-tag text-brand-600 mr-1"
+                            style="color: rgb(209, 167, 72);"></i>
+                        Purpose</label>
+                    <select class="form-select hero-select" name="purpose" aria-label="Default select example" required>
+                        <option selected>Buy or Rent</option>
+                        <option value="For Buy">For Buy</option>
+                        <option value="For Rent"></option>
+                    </select>
+                </div>
+                <div class="form-boxes hero-btn-box">
+                    <button type="submit" class="my-btn search">Send via Whatsapp</button>
+                </div>
+            </form>
+        </div>
+        <div class="welcome-box">
+            <span class="welcome-msg">🎊 Welcome in New Heaven!</span>
+        </div>
+    </div>
+    <div class="property-type-box">
+        <div>
+            <h2 class="exp-heading">Explore By Property Type</h2>
+            <p class="exp-para">Find living spaces tailored to your lifestyle and architectural taste.</p>
+        </div>
+        <div class="cards-container">
+            <div class="card" data-aos="fade-up">
+                <div class="icon-box"><i class="fa-solid fa-house"></i></div>
+                <h3>Houses & Villas</h3>
+                <p>120+ Listings</p>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="icon-box"><i class="fa-solid fa-building"></i></div>
+                <h3>Apartments</h3>
+                <p>210+ Listings</p>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Commercial</h3>
+                <p>45+ Listings</p>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3>Plots & Land</h3>
+                <p>60+ Listings</p>
+            </div>
+        </div>
+    </div>
+    <div class="card2-container">
+            <div class="card2-box">
+                <div class="properties-heading">Properties</div>
+                <div class="selections">Top Selections</div>
+            </div>
+            <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">Property Booking & Payment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Left Side: Property Details -->
+                            <div class="col-md-5">
+                                <img id="modal-img" src="" alt="Property" class="img-fluid rounded mb-3"
+                                    style="height: 180px; width: 100%; object-fit: cover;">
+                                <h4 id="modal-title" class="text-dark"></h4>
+                                <p id="modal-price" class="text-warning fw-bold fs-5"></p>
+                                <p id="modal-location" class="text-muted"><i class="fa-solid fa-location-dot"></i>
+                                    <span></span>
+                                </p>
+                            </div>
+
+                            <!-- Right Side: Payment & Transaction Form -->
+                            <div class="col-md-7 border-start">
+                                <form id="booking-form">
+                                    <h6 class="fw-bold mb-3">Select Payment Method</h6>
+                                    <div class="mb-3">
+                                        <select class="form-select" required>
+                                            <option value="">Choose Payment Method</option>
+                                            <option value="bank">Bank Transfer</option>
+                                            <option value="jazzcash">JazzCash / EasyPaisa</option>
+                                            <option value="card">Credit / Debit Card</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Transaction ID / Reference Number</label>
+                                        <input type="text" class="form-control" placeholder="Enter transaction ID"
+                                            required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Payment Receipt</label>
+                                        <input type="file" class="form-control" accept="image/*" required>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success w-100">Confirm Booking & Get
+                                        Receipt</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parent-box-card">
+            <div class="card2">
+                <div class="img-box1 img-box">
+                    <div class="choice-inbox">
+                        <div class="inbox2">
+                            <button type="button" class="my-btn sale-btn">For
+                                Sale</button>
+                        </div>
+                        <div class="inbox2">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-b-box">
+                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 550,000</h2>
+                    <a href="#" class="glass-para">The Glass House Minimalist Villa</a>
+                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Malibu Beach, CA
+                    </p>
+                    <div class="specs">
+                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4 Beds</div>
+                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 7
+                            Marla
+                        </div>
+                    </div>
+                    <button type="button" class="my-btn view-btn book-now-btn"
+                        data-title="The Glass House Minimalist Villa" data-price="PKR 550,000"
+                        data-location="Malibu Beach, CA"
+                        data-img="{% static 'media/house.avif' %}" data-bs-toggle="modal"
+                        data-bs-target="#bookingModal">Book Now</button>
+                </div>
+            </div>
+            <div class="card2">
+                <div class="img-box2 img-box">
+                    <div class="choice-inbox">
+                        <div class="inbox2">
+                            <button type="button" class="my-btn sale-btn">For
+                                Rent</button>
+                        </div>
+                        <div class="inbox2">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-b-box">
+                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 350,000</h2>
+                    <a href="#" class="glass-para">Skyline Tower Penthouse</a>
+                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, BWP</p>
+                    <div class="specs">
+                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 5 Beds</div>
+                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 2 Baths</div>
+                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 10
+                            Marla
+                        </div>
+                    </div>
+                    <button type="button" class="my-btn view-btn book-now-btn" data-title="Skyline Tower Penthouse"
+                        data-price="PKR 350,000" data-location="Downtown, BWP"
+                        data-img="{% static 'media/appart.avif' %}" data-bs-toggle="modal"
+                        data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2">
+                        <div class="img-box3 img-box">
+                            <div class="choice-inbox">
+                                <div class="inbox2">
+                                    <button type="button" class="my-btn sale-btn">For
+                                        Sale</button>
+                                </div>
+                                <div class="inbox2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img-b-box">
+                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 650,000</h2>
+                            <a href="#" class="glass-para">Urban Loft in Arts District</a>
+                            <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, Austin, TX</p>
+                            <div class="specs">
+                                <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 6 Beds</div>
+                                <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                                <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 12
+                                    Marla
+                                </div>
+                            </div>
+                            <button type="button" class="my-btn view-btn book-now-btn"
+                                data-title="Urban Loft in Arts District" data-price="PKR 650,000"
+                                data-location="Downtown, Austin, TX"
+                                data-img="{% static 'media/flat.avif' %}"
+                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                <div class="img-box4 img-box">
+                                    <div class="choice-inbox">
+                                        <div class="inbox2">
+                                            <button type="button" class="my-btn sale-btn">For
+                                                Rent</button>
+                                        </div>
+                                        <div class="inbox2">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-b-box">
+                                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 550,000</h2>
+                                    <a href="#" class="glass-para">Prime City</a>
+                                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Block 2, TX
+                                    </p>
+                                    <div class="specs">
+                                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4 Beds
+                                        </div>
+                                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths
+                                        </div>
+                                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i>
+                                            2,0
+                                            Marla
+                                        </div>
+                                    </div>
+                                    <button type="button" class="my-btn view-btn book-now-btn" data-title="Prime City "
+                                        data-price="PKR 550,000" data-location="Block 2, TX"
+                                        data-img="{% static 'media/upperfla.jpg' %}"
+                                        data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                        <div class="img-box5 img-box">
+                                            <div class="choice-inbox">
+                                                <div class="inbox2">
+                                                    <button type="button" class="my-btn sale-btn">For
+                                                        Rent</button>
+                                                </div>
+                                                <div class="inbox2">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="img-b-box">
+                                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 750,000</h2>
+                                            <a href="#" class="glass-para">Royal Palm Luxury Estate</a>
+                                            <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Model
+                                                Town, CA
+                                            </p>
+                                            <div class="specs">
+                                                <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4
+                                                    Beds</div>
+                                                <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3
+                                                    Baths</div>
+                                                <div><i class="fa-solid fa-ruler-combined"
+                                                        style="color: rgb(148 163 184);"></i> 15
+                                                    Marla
+                                                </div>
+                                            </div>
+                                            <button type="button" class="my-btn view-btn book-now-btn"
+                                                data-title="Royal Palm Luxury Estate" data-price="PKR 750,000"
+                                                data-location="Model Town, CA"
+                                                data-img="{% static 'media/client5.avif' %}"
+                                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                                <div class="img-box6 img-box">
+                                                    <div class="choice-inbox">
+                                                        <div class="inbox2">
+                                                            <button type="button" class="my-btn sale-btn">For
+                                                                Sale</button>
+                                                        </div>
+                                                        <div class="inbox2">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="img-b-box">
+                                                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 850,000</h2>
+                                                    <a href="#" class="glass-para">The Green Valley Modern Duplex</a>
+                                                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i>
+                                                        DHA phase 17, BWP
+                                                    </p>
+                                                    <div class="specs">
+                                                        <div><i class="fa-solid fa-bed"
+                                                                style="color: rgb(148 163 184);"></i> 4 Beds</div>
+                                                        <div><i class="fa-solid fa-bath"
+                                                                style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                                                        <div><i class="fa-solid fa-ruler-combined"
+                                                                style="color: rgb(148 163 184);"></i> 9
+                                                            Marla
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="my-btn view-btn book-now-btn"
+                                                        data-title="The Green Valley Modern Duplex"
+                                                        data-price="PKR 850,000" data-location="DHA phase 17, BWP"
+                                                        data-img="{% static 'media/client6.avif' %}"
+                                                        data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                                        <div class="img-box7 img-box">
+                                                            <div class="choice-inbox">
+                                                                <div class="inbox2">
+                                                                    <button type="button" class="my-btn sale-btn">For
+                                                                        Rent</button>
+                                                                </div>
+                                                                <div class="inbox2">
+                                                                    <i class="fa-solid fa-heart"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="img-b-box">
+                                                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 500,000
+                                                            </h2>
+                                                            <a href="#" class="glass-para">Blue Ridge Executive
+                                                                Villa</a>
+                                                            <p><i class="fa-solid fa-location-dot"
+                                                                    style="color: #D1A748;"></i> Malibu Beach, CA
+                                                            </p>
+                                                            <div class="specs">
+                                                                <div><i class="fa-solid fa-bed"
+                                                                        style="color: rgb(148 163 184);"></i> 4 Beds
+                                                                </div>
+                                                                <div><i class="fa-solid fa-bath"
+                                                                        style="color: rgb(148 163 184);"></i> 3 Baths
+                                                                </div>
+                                                                <div><i class="fa-solid fa-ruler-combined"
+                                                                        style="color: rgb(148 163 184);"></i> 14
+                                                                    Marla
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="my-btn view-btn book-now-btn"
+                                                                data-title="Blue Ridge Executive Villa"
+                                                                data-price="PKR 950,000" data-location="500,000"
+                                                                data-img="{% static 'media/client7.avif' %}"
+                                                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                    <div class="img-box8 img-box">
+                        <div class="choice-inbox">
+                            <div class="inbox2">
+                                <button type="button"
+                                    class="my-btn sale-btn">For
+                                    Sale</button>
+                            </div>
+                            <div class="inbox2">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-b-box">
+                        <h2 style="color: #0f172a; font-weight: bolder;">PKR
+                            850,000</h2>
+                        <a href="#" class="glass-para">Pearl Continental
+                            Studio Apartment</a>
+                        <p><i class="fa-solid fa-location-dot"
+                                style="color: #D1A748;"></i> Gulberg III,
+                            DHA
+                        </p>
+                        <div class="specs">
+                            <div><i class="fa-solid fa-bed"
+                                    style="color: rgb(148 163 184);"></i> 4
+                                Beds</div>
+                            <div><i class="fa-solid fa-bath"
+                                    style="color: rgb(148 163 184);"></i> 3
+                                Baths</div>
+                            <div><i class="fa-solid fa-ruler-combined"
+                                    style="color: rgb(148 163 184);"></i> 10
+                                Marla
+                            </div>
+                        </div>
+                        <button type="button"
+                            class="my-btn view-btn book-now-btn"
+                            data-title="Pearl Continental Studio Apartment"
+                            data-price="PKR 850,000"
+                            data-location="Gulberg III, DHA"
+                            data-img="{% static 'media/client8.avif' %}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookingModal"">Book Now</button>
+    </div>
+    </div>
+    <div class=" card2 add-hide lock-boxes">
+                            <div class="img-box9 img-box">
+                                <div class="choice-inbox">
+                                    <div class="inbox2">
+                                        <button type="button"
+                                            class="my-btn sale-btn">For
+                                            Rent</button>
+                                    </div>
+                                    <div class="inbox2">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="img-b-box">
+                                <h2
+                                    style="color: #0f172a; font-weight: bolder;">
+                                    PKR 600,000</h2>
+                                <a href="#" class="glass-para">Crescent
+                                    Heights Luxury Flat</a>
+                                <p><i class="fa-solid fa-location-dot"
+                                        style="color: #D1A748;"></i> Clifton
+                                    IV, DHA
+                                </p>
+                                <div class="specs">
+                                    <div><i class="fa-solid fa-bed"
+                                            style="color: rgb(148 163 184);"></i>
+                                        4 Beds</div>
+                                    <div><i class="fa-solid fa-bath"
+                                            style="color: rgb(148 163 184);"></i>
+                                        3 Baths</div>
+                                    <div><i class="fa-solid fa-ruler-combined"
+                                            style="color: rgb(148 163 184);"></i>
+                                        18
+                                        Marla
+                                    </div>
+                                </div>
+                                <button type="button"
+                                    class="my-btn view-btn book-now-btn"
+                                    data-title="Crescent Heights Luxury Flat"
+                                    data-price="PKR 600,000"
+                                    data-location="Clifton IV, DHA"
+                                    data-img="{% static 'media/client9.avif' %}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#bookingModal"">Book Now</button>
+    </div>
+    </div>
+    </div>
+                <div class="view-properties">
+                        <pre>View All Properties <i class="fa-solid fa-angle-down view-icon"
+                            style="color: rgb(209, 167, 72);"></i></pre>
+                    </div>
+        </div>
+                    <div class="container3">
+                        <div
+                            style="display: flex; justify-content: center; align-items: center;">
+                            <div class="cont3-box1"></div>
+                        </div>
+                        <div class="cont3-box2">
+                            <p
+                                style="font-weight: bold;font-size: 16px;color: #D1A748;">
+                                Why Choose CrownProperties</p>
+                            <h1>We Provide Premium Real Estate Experiences
+                                Across The Globe</h1>
+                            <p style="color: #b7b7b7;">CrownProperties is
+                                built on a foundation of integrity,
+                                transparent pricing,
+                                and
+                                unparalleled local market knowledge. Whether
+                                buying your first apartment or building an
+                                investment
+                                portfolio, our team guides you every step of
+                                the way.</p>
+                            <div class="two-blocks">
+                                <div class="block1 both-blocks">
+                                    <div class="headset-icon"><i
+                                            class="fa-solid fa-shield-halved text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p>Verified Listings</p>
+                                        <p>100% legal title verification</p>
+                                    </div>
+                                </div>
+                                <div class="block2 both-blocks">
+                                    <div class="headset-icon"><i
+                                            class="fa-solid fa-headset text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p>24/7 Agent Support</p>
+                                        <p>Dedicated specialist assistance
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-btn-box">
+                                <a href='{% url "about" %}'
+                                    class="about-btn"><button type="button"
+                                        class="my-btn about-btn">About
+                                        Us</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="say-box">
+                        <div class="say-box1">
+                            <p>Client Reviews</p>
+                            <h1>What Our Clients Say</h1>
+                        </div>
+                        <div class="say-box2">
+                            <div class="say-card" data-aos="fade-up">
+                                <div class="stars-box">
+                                    <i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p
+                                    style="color:#cbd5e1; font-style: italic;">
+                                    "CrownProperties made buying our first
+                                    home a breeze.
+                                    Their
+                                    team was knowledgeable, patient, and
+                                    always available to answer our
+                                    questions. We couldn't be happier with
+                                    our new home!"</p>
+                                <div class="say-card-author"><img
+                                        src="{% static 'media/client2.avif' %}"
+                                        alt="Author Image"
+                                        class="author-img">- Aliya Gull
+                                    <span
+                                        style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">HomeOwner
+                                        in BWP</span>
+                                </div>
+                            </div>
+                            <div class="say-card" data-aos="fade-up">
+                                <div class="stars-box">
+                                    <i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p
+                                    style="color:#cbd5e1; font-style: italic;">
+                                    "CrownProperties turned our dream of
+                                    owning a house
+                                    into reality. Their staff was incredibly
+                                    helpful, and constantly ready to guide
+                                    us through the
+                                    paperwork. We are absolutely thrilled
+                                    with our beautiful new place!"</p>
+                                <div class="say-card-author"><img
+                                        src="{% static 'media/client3.avif' %}"
+                                        alt="Author Image"
+                                        class="author-img">- Mrs.Ali Azhar
+                                    GK <span
+                                        style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">Dealer
+                                        in South Punjab</span></div>
+                            </div>
+                            <div class="say-card" data-aos="fade-up">
+                                <div class="stars-box">
+                                    <i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p
+                                    style="color:#cbd5e1; font-style: italic;">
+                                    "CrownProperties ensured that our
+                                    property search
+                                    ended with a perfect match. Their
+                                    experts were highly skilled, attentive,
+                                    and always on track to
+                                    resolve our doubts. We are completely in
+                                    love with our new space!"</p>
+                                <div class="say-card-author"><img
+                                        src="{% static 'media/client4.jpg' %}"
+                                        alt="Author Image"
+                                        class="author-img">- Siraj
+                                    Accountator <span
+                                        style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">Businessman
+                                        in BWP</span></div>
+                            </div>
+
+                            <div class="say-card" data-aos="fade-up">
+                                <div class="stars-box">
+                                    <i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p
+                                    style="color:#cbd5e1; font-style: italic;">
+                                    "As an investor, I needed a reliable
+                                    partner to help
+                                    me navigate the real estate market.
+                                    CrownProperties
+                                    provided expert advice and helped me
+                                    secure profitable properties. Highly
+                                    recommend!"</p>
+                                <div class="say-card-author"><img
+                                        src="{% static 'media/client1.avif' %}"
+                                        alt="Author Image"
+                                        class="author-img">- Adeeb <span
+                                        style="color: #b7b7b7;font-weight: 400;font-family: sans-serif;display: inline;">CEO,
+                                        Nexa
+                                        Tech Studios</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="para-connect-box">
+                        <div class="connect-box">
+                            <div class="find">
+                                <h1>Ready to Find Your Next Dream Property?
+                                </h1>
+                                <p>Connect with our agents today for
+                                    personalized guidance or list your
+                                    property with us.</p>
+                            </div>
+                            <div class="agent-box">
+                                <a href='{% url "properties" %}'><button
+                                        type="submit"
+                                        class="my-btn browse-btn">Browse
+                                        Listings</button></a>
+                                <a href='{% url "contact" %}'><button
+                                        type="submit"
+                                        class="my-btn contact-btn">Contact
+                                        Agent</button></a>
+                            </div>
+                        </div>
+                    </div>
+</section>
+<div class="contact-section">
+    <div class="contact-container">
+        <div class="contact-header">
+            <span class="sub-title">Contact Us</span>
+            <h2>We're Here To Help You</h2>
+            <p>Have a question or want to discuss listing your home? Reach out to our team.</p>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="info-column">
+
+                <div class="info-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Headquarters</h4>
+                        <p>Jinnah Avenue (MB-2), Sector B, APE Canal Road<br>Bahawalpur</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Phone Support</h4>
+                        <p>+92-303-49049098</p>
+                        <span class="sub-text">Mon-Fri: 8am - 7pm EST</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Email Inquiries</h4>
+                        <p>mbilawalali850@gmail.com</p>
+                        <p>mbilawalali825@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2!2d71.68!3d29.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b482a472c2309%3A0x658d34bf44f19b16!2sDHA%20Bahawalpur!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+
+            <div class="form-column">
+                <h3>Send Us A Message</h3>
+
+                <form method="POST" action="{% url 'contact_message' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" name="full_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" name="email_address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" name="subject" placeholder="Inquiry topic">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea rows="4" placeholder="How can we help you?" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Message</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

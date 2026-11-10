@@ -1,0 +1,394 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}
+    Properties
+{% endblock  %} 
+{% block start %}
+    <div class="card2-container">
+            <div class="card2-box">
+                <div class="properties-heading">Properties</div>
+                <div class="selections">Top Selections</div>
+            </div>
+            <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">Property Booking & Payment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Left Side: Property Details -->
+                            <div class="col-md-5">
+                                <img id="modal-img" src="" alt="Property" class="img-fluid rounded mb-3"
+                                    style="height: 180px; width: 100%; object-fit: cover;">
+                                <h4 id="modal-title" class="text-dark"></h4>
+                                <p id="modal-price" class="text-warning fw-bold fs-5"></p>
+                                <p id="modal-location" class="text-muted"><i class="fa-solid fa-location-dot"></i>
+                                    <span></span>
+                                </p>
+                            </div>
+
+                            <!-- Right Side: Payment & Transaction Form -->
+                            <div class="col-md-7 border-start">
+                                <form id="booking-form">
+                                    <h6 class="fw-bold mb-3">Select Payment Method</h6>
+                                    <div class="mb-3">
+                                        <select class="form-select" required>
+                                            <option value="">Choose Payment Method</option>
+                                            <option value="bank">Bank Transfer</option>
+                                            <option value="jazzcash">JazzCash / EasyPaisa</option>
+                                            <option value="card">Credit / Debit Card</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Transaction ID / Reference Number</label>
+                                        <input type="text" class="form-control" placeholder="Enter transaction ID"
+                                            required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Payment Receipt</label>
+                                        <input type="file" class="form-control" accept="image/*" required>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success w-100">Confirm Booking & Get
+                                        Receipt</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parent-box-card">
+            <div class="card2">
+                <div class="img-box1 img-box">
+                    <div class="choice-inbox">
+                        <div class="inbox2">
+                            <button type="button" class="my-btn sale-btn">For
+                                Sale</button>
+                        </div>
+                        <div class="inbox2">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-b-box">
+                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 550,000</h2>
+                    <a href="#" class="glass-para">The Glass House Minimalist Villa</a>
+                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Malibu Beach, CA
+                    </p>
+                    <div class="specs">
+                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4 Beds</div>
+                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 7
+                            Marla
+                        </div>
+                    </div>
+                    <button type="button" class="my-btn view-btn book-now-btn"
+                        data-title="The Glass House Minimalist Villa" data-price="PKR 550,000"
+                        data-location="Malibu Beach, CA"
+                        data-img="{% static 'media/house.avif' %}" data-bs-toggle="modal"
+                        data-bs-target="#bookingModal">Book Now</button>
+                </div>
+            </div>
+            <div class="card2">
+                <div class="img-box2 img-box">
+                    <div class="choice-inbox">
+                        <div class="inbox2">
+                            <button type="button" class="my-btn sale-btn">For
+                                Rent</button>
+                        </div>
+                        <div class="inbox2">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-b-box">
+                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 350,000</h2>
+                    <a href="#" class="glass-para">Skyline Tower Penthouse</a>
+                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, BWP</p>
+                    <div class="specs">
+                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 5 Beds</div>
+                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 2 Baths</div>
+                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 10
+                            Marla
+                        </div>
+                    </div>
+                    <button type="button" class="my-btn view-btn book-now-btn" data-title="Skyline Tower Penthouse"
+                        data-price="PKR 350,000" data-location="Downtown, BWP"
+                        data-img="{% static 'media/appart.avif' %}" data-bs-toggle="modal"
+                        data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2">
+                        <div class="img-box3 img-box">
+                            <div class="choice-inbox">
+                                <div class="inbox2">
+                                    <button type="button" class="my-btn sale-btn">For
+                                        Sale</button>
+                                </div>
+                                <div class="inbox2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img-b-box">
+                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 650,000</h2>
+                            <a href="#" class="glass-para">Urban Loft in Arts District</a>
+                            <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Downtown, Austin, TX</p>
+                            <div class="specs">
+                                <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 6 Beds</div>
+                                <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                                <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i> 12
+                                    Marla
+                                </div>
+                            </div>
+                            <button type="button" class="my-btn view-btn book-now-btn"
+                                data-title="Urban Loft in Arts District" data-price="PKR 650,000"
+                                data-location="Downtown, Austin, TX"
+                                data-img="{% static 'media/flat.avif' %}"
+                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                <div class="img-box4 img-box">
+                                    <div class="choice-inbox">
+                                        <div class="inbox2">
+                                            <button type="button" class="my-btn sale-btn">For
+                                                Rent</button>
+                                        </div>
+                                        <div class="inbox2">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img-b-box">
+                                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 550,000</h2>
+                                    <a href="#" class="glass-para">Prime City</a>
+                                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Block 2, TX
+                                    </p>
+                                    <div class="specs">
+                                        <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4 Beds
+                                        </div>
+                                        <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3 Baths
+                                        </div>
+                                        <div><i class="fa-solid fa-ruler-combined" style="color: rgb(148 163 184);"></i>
+                                            2,0
+                                            Marla
+                                        </div>
+                                    </div>
+                                    <button type="button" class="my-btn view-btn book-now-btn" data-title="Prime City "
+                                        data-price="PKR 550,000" data-location="Block 2, TX"
+                                        data-img="{% static 'media/upperfla.jpg' %}"
+                                        data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                        <div class="img-box5 img-box">
+                                            <div class="choice-inbox">
+                                                <div class="inbox2">
+                                                    <button type="button" class="my-btn sale-btn">For
+                                                        Rent</button>
+                                                </div>
+                                                <div class="inbox2">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="img-b-box">
+                                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 750,000</h2>
+                                            <a href="#" class="glass-para">Royal Palm Luxury Estate</a>
+                                            <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i> Model
+                                                Town, CA
+                                            </p>
+                                            <div class="specs">
+                                                <div><i class="fa-solid fa-bed" style="color: rgb(148 163 184);"></i> 4
+                                                    Beds</div>
+                                                <div><i class="fa-solid fa-bath" style="color: rgb(148 163 184);"></i> 3
+                                                    Baths</div>
+                                                <div><i class="fa-solid fa-ruler-combined"
+                                                        style="color: rgb(148 163 184);"></i> 15
+                                                    Marla
+                                                </div>
+                                            </div>
+                                            <button type="button" class="my-btn view-btn book-now-btn"
+                                                data-title="Royal Palm Luxury Estate" data-price="PKR 750,000"
+                                                data-location="Model Town, CA"
+                                                data-img="{% static 'media/client5.avif' %}"
+                                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                                <div class="img-box6 img-box">
+                                                    <div class="choice-inbox">
+                                                        <div class="inbox2">
+                                                            <button type="button" class="my-btn sale-btn">For
+                                                                Sale</button>
+                                                        </div>
+                                                        <div class="inbox2">
+                                                            <i class="fa-solid fa-heart"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="img-b-box">
+                                                    <h2 style="color: #0f172a; font-weight: bolder;">PKR 850,000</h2>
+                                                    <a href="#" class="glass-para">The Green Valley Modern Duplex</a>
+                                                    <p><i class="fa-solid fa-location-dot" style="color: #D1A748;"></i>
+                                                        DHA phase 17, BWP
+                                                    </p>
+                                                    <div class="specs">
+                                                        <div><i class="fa-solid fa-bed"
+                                                                style="color: rgb(148 163 184);"></i> 4 Beds</div>
+                                                        <div><i class="fa-solid fa-bath"
+                                                                style="color: rgb(148 163 184);"></i> 3 Baths</div>
+                                                        <div><i class="fa-solid fa-ruler-combined"
+                                                                style="color: rgb(148 163 184);"></i> 9
+                                                            Marla
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="my-btn view-btn book-now-btn"
+                                                        data-title="The Green Valley Modern Duplex"
+                                                        data-price="PKR 850,000" data-location="DHA phase 17, BWP"
+                                                        data-img="{% static 'media/client6.avif' %}"
+                                                        data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                                                        <div class="img-box7 img-box">
+                                                            <div class="choice-inbox">
+                                                                <div class="inbox2">
+                                                                    <button type="button" class="my-btn sale-btn">For
+                                                                        Rent</button>
+                                                                </div>
+                                                                <div class="inbox2">
+                                                                    <i class="fa-solid fa-heart"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="img-b-box">
+                                                            <h2 style="color: #0f172a; font-weight: bolder;">PKR 500,000
+                                                            </h2>
+                                                            <a href="#" class="glass-para">Blue Ridge Executive
+                                                                Villa</a>
+                                                            <p><i class="fa-solid fa-location-dot"
+                                                                    style="color: #D1A748;"></i> Malibu Beach, CA
+                                                            </p>
+                                                            <div class="specs">
+                                                                <div><i class="fa-solid fa-bed"
+                                                                        style="color: rgb(148 163 184);"></i> 4 Beds
+                                                                </div>
+                                                                <div><i class="fa-solid fa-bath"
+                                                                        style="color: rgb(148 163 184);"></i> 3 Baths
+                                                                </div>
+                                                                <div><i class="fa-solid fa-ruler-combined"
+                                                                        style="color: rgb(148 163 184);"></i> 14
+                                                                    Marla
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="my-btn view-btn book-now-btn"
+                                                                data-title="Blue Ridge Executive Villa"
+                                                                data-price="PKR 950,000" data-location="500,000"
+                                                                data-img="{% static 'media/client7.avif' %}"
+                                                                data-bs-toggle="modal" data-bs-target="#bookingModal"">Book Now</button>
+                    </div>
+                </div>
+                <div class=" card2 add-hide lock-boxes">
+                    <div class="img-box8 img-box">
+                        <div class="choice-inbox">
+                            <div class="inbox2">
+                                <button type="button"
+                                    class="my-btn sale-btn">For
+                                    Sale</button>
+                            </div>
+                            <div class="inbox2">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-b-box">
+                        <h2 style="color: #0f172a; font-weight: bolder;">PKR
+                            850,000</h2>
+                        <a href="#" class="glass-para">Pearl Continental
+                            Studio Apartment</a>
+                        <p><i class="fa-solid fa-location-dot"
+                                style="color: #D1A748;"></i> Gulberg III,
+                            DHA
+                        </p>
+                        <div class="specs">
+                            <div><i class="fa-solid fa-bed"
+                                    style="color: rgb(148 163 184);"></i> 4
+                                Beds</div>
+                            <div><i class="fa-solid fa-bath"
+                                    style="color: rgb(148 163 184);"></i> 3
+                                Baths</div>
+                            <div><i class="fa-solid fa-ruler-combined"
+                                    style="color: rgb(148 163 184);"></i> 10
+                                Marla
+                            </div>
+                        </div>
+                        <button type="button"
+                            class="my-btn view-btn book-now-btn"
+                            data-title="Pearl Continental Studio Apartment"
+                            data-price="PKR 850,000"
+                            data-location="Gulberg III, DHA"
+                            data-img="{% static 'media/client8.avif' %}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookingModal"">Book Now</button>
+    </div>
+    </div>
+    <div class=" card2 add-hide lock-boxes">
+                            <div class="img-box9 img-box">
+                                <div class="choice-inbox">
+                                    <div class="inbox2">
+                                        <button type="button"
+                                            class="my-btn sale-btn">For
+                                            Rent</button>
+                                    </div>
+                                    <div class="inbox2">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="img-b-box">
+                                <h2
+                                    style="color: #0f172a; font-weight: bolder;">
+                                    PKR 600,000</h2>
+                                <a href="#" class="glass-para">Crescent
+                                    Heights Luxury Flat</a>
+                                <p><i class="fa-solid fa-location-dot"
+                                        style="color: #D1A748;"></i> Clifton
+                                    IV, DHA
+                                </p>
+                                <div class="specs">
+                                    <div><i class="fa-solid fa-bed"
+                                            style="color: rgb(148 163 184);"></i>
+                                        4 Beds</div>
+                                    <div><i class="fa-solid fa-bath"
+                                            style="color: rgb(148 163 184);"></i>
+                                        3 Baths</div>
+                                    <div><i class="fa-solid fa-ruler-combined"
+                                            style="color: rgb(148 163 184);"></i>
+                                        18
+                                        Marla
+                                    </div>
+                                </div>
+                                <button type="button"
+                                    class="my-btn view-btn book-now-btn"
+                                    data-title="Crescent Heights Luxury Flat"
+                                    data-price="PKR 600,000"
+                                    data-location="Clifton IV, DHA"
+                                    data-img="{% static 'media/client9.avif' %}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#bookingModal"">Book Now</button>
+    </div>
+    </div>
+    </div>
+                <div class="view-properties">
+                        <pre>View All Properties <i class="fa-solid fa-angle-down view-icon"
+                            style="color: rgb(209, 167, 72);"></i></pre>
+                    </div>
+        </div>
+{% endblock  %} 
