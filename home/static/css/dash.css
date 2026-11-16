@@ -5,7 +5,7 @@
 }
 
 .mini-nav {
-    width: 100vw;
+    width: 100%;
     background-color: rgb(24, 24, 42);
     display: flex;
     justify-content: space-between;
@@ -17,7 +17,7 @@
 
 @media (max-width: 650px) {
     .mini-nav {
-        width: 100vw;
+        width: 100%;
         background-color: rgb(24, 24, 42);
         flex-direction: column;
     }
@@ -82,10 +82,10 @@
         flex-direction: column;
     }
     .mini-nav-first {
-        width: 100vw;
+        width: 100%;
     }
     .mini-nav-sec {
-        width: 100vw;
+        width: 100%;
     }
     .mini-nav-first {
         margin-bottom: 0.5rem;
@@ -269,7 +269,7 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.843)), url('../media/hero-section-img.avif');
     background-size: cover;
     background-repeat: no-repeat;
@@ -278,7 +278,7 @@
 }
 
 .navbar {
-    width: 100vw;
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 40;
@@ -439,7 +439,7 @@
 }
 
 .property-type-box {
-    width: 100vw;
+    width: 100%;
     padding: 64px 24px;
     color: #1e293b;
     background-color: #f8fafc;
@@ -620,7 +620,7 @@
 }
 
 .card2-container {
-    width: 100vw;
+    width: 100%;
     padding: 2rem 1rem;
     color: #1e293b;
     background-color: #f1f5f9;
