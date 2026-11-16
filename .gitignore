@@ -13,3 +13,6 @@ db.sqlite3
 
 # Security Key
 .env.local
+
+# Collected static files for deployment
+staticfiles/
