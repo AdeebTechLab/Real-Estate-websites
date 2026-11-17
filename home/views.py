@@ -23,69 +23,11 @@ def contact(request):
 def about(request):
     return render(request, "home/about.html")
 
-def register(request):
-    if request.method != 'POST':
-        return render(request, "home/register.html", context={'title': 'Register', 'favicon': 'media/register.png'})
-
-    first_name = request.POST.get('first_name')
-    last_name = request.POST.get('last_name')
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    confirm_password = request.POST.get('confirm_password')
-
-    if password != confirm_password:
-        messages.info(request, 'Passwords do not match')
-        return redirect('register')
-
-    if User.objects.filter(email=email).exists():
-        messages.info(request, 'Email already taken')
-        return redirect('register')
-
-    user = User.objects.create(
-        first_name=first_name,
-        last_name=last_name,
-        email=email,
-    )
-    user.set_password(password)
-    user.set_password(confirm_password)
-    user.save()
-    messages.info(request, 'Account created successfully')
-
-    return redirect('register')
-
-def login_view(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        if not User.objects.filter(email=email).exists():
-            messages.info(request, 'Email Invalid!')
-            return redirect('login')
-
-        user_obj = User.objects.filter(email=email).first()
-        user = authenticate(request, username=user_obj.username, password=password)
-        if user:
-            auth_login(request, user)
-            return redirect('home')
-        else:
-            messages.info(request, 'Invalid email or password!')
-            return redirect('login')
-    return render(request, "home/login.html", context={'title': 'Login', 'favicon': 'media/login.png'})
-
-def logout_view(request):
-    auth_logout(request)
-    return redirect('home')
-
 def send_location(request):
     if request.method == 'POST':
         location = request.POST.get('location')
         type_val = request.POST.get('type')
         purpose = request.POST.get('purpose')
-        data_registration.objects.create(
-            location = location,
-            type = type_val,
-            purpose = purpose
-        )
 
         raw_message = (
             f"New Inquiry Received!\n\n"
@@ -93,8 +35,8 @@ def send_location(request):
             f"🏷️ Type: {type_val}\n"
             f"🎯 Purpose: {purpose}"
         )
+
         encoded_message = quote(raw_message)
-        print(encoded_message)
         phone_number = "923034909098"
         whatsapp_url = f"https://api.whatsapp.com/send?phone={phone_number}&text={encoded_message}"
         return redirect(whatsapp_url)

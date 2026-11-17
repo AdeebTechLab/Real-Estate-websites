@@ -116,25 +116,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="collapse navbar-collapse auth-box" id="navbarNavDropdown">
-                {% if request.user.is_authenticated %}
-                <div class="profile-circle">
-                    <i class="fa-regular fa-circle-user" style="color: rgb(209, 167, 72);"></i>
-                    <span>{{ request.user.first_name }}</span>
-                </div>
-                <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="my-btn btn-outline-primary logout">Logout</button>
-                </form>
-                {% else %}
-                <a href="{% url 'login' %}"><button type="button" class="my-btn sign-in"><i
-                            class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</button></a>
-                <a href="{% url 'register' %}"><button type="button" class="my-btn sign-up"><i
+            <a href="https://wa.me/923034909098"><button type="button" class="my-btn sign-up"><i
                             class="fa-solid fa-person-circle-plus"></i>
-                        Register</button></a>
-                {% endif %}
-            </div>
+                        Chat on Whatsapp</button></a>
         </div>
     </nav>
 
