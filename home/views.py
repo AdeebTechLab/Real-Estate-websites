@@ -54,14 +54,6 @@ def contact_message(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        ContactMessage.objects.create(
-            full_name=full_name,
-            email_address=email_address,
-            phone_number=phone_number,
-            subject=subject,
-            message=message
-        )
-
         email_subject = f"New Contact Message: {subject}"
         
         email_body = f"""There is a new message on your Real Estate Website. Details:\n
